@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shaping Digital Futures – AT2 Design Solution</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --purple-deep:    #4B3A6E;
+    --purple-mid:     #6E5A9A;
+    --purple-soft:    #9B82C8;
+    --purple-pale:    #C8B8E8;
+    --purple-mist:    #EDE7F6;
+    --purple-ultra:   #F5F1FC;
+    --grey-900:       #1C1C2A;
+    --grey-700:       #3D3D52;
+    --grey-500:       #7A7A96;
+    --grey-300:       #C2C2D4;
+    --grey-100:       #EDEDF4;
+    --grey-50:        #F7F7FB;
+    --white:          #FFFFFF;
+    --accent-line:    rgba(107,90,154,.18);
+    --shadow-soft:    0 4px 28px rgba(75,58,110,.10);
+    --shadow-card:    0 2px 16px rgba(75,58,110,.08);
+    --radius:         14px;
+    --radius-sm:      8px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--grey-50);
+    color: var(--grey-700);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ───────────── DESKTOP NAV ───────────── */
+  nav.desktop-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--accent-line);
+    padding: 0 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 58px;
+    box-shadow: 0 2px 16px rgba(75,58,110,.06);
+  }
+  nav.desktop-nav .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: .93rem;
+    color: var(--purple-deep);
+    font-weight: 700;
+    letter-spacing: .01em;
+    margin-right: auto;
+    white-space: nowrap;
+  }
+  nav.desktop-nav a {
+    text-decoration: none;
+    color: var(--grey-500);
+    font-size: .82rem;
+    font-weight: 500;
+    padding: 0 .9rem;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+    white-space: nowrap;
+  }
+  nav.desktop-nav a:hover { color: var(--purple-mid); border-bottom-color: var(--purple-pale); }
+  nav.desktop-nav a.active { color: var(--purple-deep); border-bottom-color: var(--purple-mid); }
+
+  /* ───────────── MOBILE FLOATING NAV ───────────── */
+  nav.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 200;
+    background: rgba(75,58,110,.92);
+    backdrop-filter: blur(18px);
+    border-radius: 50px;
+    padding: .55rem 1.2rem;
+    gap: .2rem;
+    box-shadow: 0 8px 32px rgba(75,58,110,.38);
+    flex-direction: row;
+    align-items: center;
+    width: calc(100vw - 32px);
+    max-width: 420px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav.mobile-nav::-webkit-scrollbar { display: none; }
+  nav.mobile-nav a {
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    font-size: .72rem;
+    font-weight: 500;
+    padding: .35rem .65rem;
+    border-radius: 30px;
+    white-space: nowrap;
+    transition: background .2s, color .2s;
+  }
+  nav.mobile-nav a:hover, nav.mobile-nav a.active {
+    background: rgba(255,255,255,.18);
+    color: #fff;
+  }
+
+  /* ───────────── HERO ───────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-mid) 55%, var(--purple-soft) 100%);
+    padding: 5.5rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='rgba(255,255,255,.06)'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner { max-width: 860px; margin: 0 auto; position: relative; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    color: rgba(255,255,255,.9);
+    font-size: .78rem;
+    font-weight: 500;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .9rem;
+    border-radius: 30px;
+    margin-bottom: 1.3rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.1rem, 5vw, 3.4rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.18;
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em { font-style: italic; color: var(--purple-pale); }
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex-wrap: wrap;
+  }
+  .hero-meta span {
+    color: rgba(255,255,255,.7);
+    font-size: .87rem;
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
+  .hero-meta span strong { color: rgba(255,255,255,.95); font-weight: 600; }
+  .hero-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,.35); }
+
+  /* ───────────── LAYOUT ───────────── */
+  .container { max-width: 960px; margin: 0 auto; padding: 0 2rem; }
+
+  section { padding: 3.5rem 0; }
+  section + section { border-top: 1px solid var(--grey-100); }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    margin-bottom: 1.8rem;
+  }
+  .section-label .pill {
+    background: var(--purple-mist);
+    color: var(--purple-deep);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .25rem .75rem;
+    border-radius: 20px;
+    border: 1px solid var(--purple-pale);
+    white-space: nowrap;
+  }
+  .section-label .line { flex: 1; height: 1px; background: var(--grey-100); }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--purple-deep);
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: .7rem;
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--purple-mid);
+    font-weight: 600;
+    margin-bottom: .6rem;
+    margin-top: 1.8rem;
+  }
+  h4 {
+    font-size: .95rem;
+    font-weight: 600;
+    color: var(--grey-700);
+    margin-bottom: .4rem;
+    margin-top: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  p { margin-bottom: 1rem; color: var(--grey-700); }
+  p:last-child { margin-bottom: 0; }
+
+  /* ───────────── CARDS ───────────── */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.8rem 2rem;
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.4rem;
+  }
+  .card-accent {
+    border-left: 4px solid var(--purple-mid);
+    background: var(--purple-ultra);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    border-top: 1px solid var(--purple-pale);
+    border-right: 1px solid var(--purple-pale);
+    border-bottom: 1px solid var(--purple-pale);
+  }
+  .callout {
+    background: var(--purple-ultra);
+    border: 1px solid var(--purple-pale);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.8rem;
+    margin: 1.4rem 0;
+  }
+  .callout p { color: var(--purple-deep); font-size: .96rem; }
+
+  /* ───────────── IMAGE PLACEHOLDERS ───────────── */
+  .img-figure {
+    margin: 2rem 0;
+    text-align: center;
+  }
+  .img-figure img {
+    max-width: 100%;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--grey-100);
+    display: block;
+    margin: 0 auto;
+  }
+  .img-caption {
+    margin-top: .65rem;
+    font-size: .83rem;
+    color: var(--grey-500);
+    font-style: italic;
+    letter-spacing: .01em;
+  }
+
+  /* ───────────── TABLES ───────────── */
+  .table-wrap { overflow-x: auto; margin: 1.4rem 0; border-radius: var(--radius); box-shadow: var(--shadow-card); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    font-size: .875rem;
+  }
+  thead tr { background: var(--purple-deep); }
+  thead th {
+    color: #fff;
+    font-weight: 600;
+    padding: .8rem 1.1rem;
+    text-align: left;
+    font-size: .8rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid var(--grey-100); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--grey-50); }
+  tbody tr:hover { background: var(--purple-ultra); transition: background .15s; }
+  td { padding: .75rem 1.1rem; vertical-align: top; line-height: 1.55; }
+  td strong { color: var(--purple-deep); }
+  td:first-child { font-weight: 500; color: var(--grey-700); }
+
+  /* Section group row */
+  .row-group td { background: var(--purple-mist); font-weight: 600; color: var(--purple-deep); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+
+  /* ───────────── GANTT CHART ───────────── */
+  .gantt-wrapper {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-card);
+    overflow-x: auto;
+    margin: 1.4rem 0;
+  }
+  .gantt-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+  .gantt-table thead tr { background: var(--purple-deep); }
+  .gantt-table thead th {
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    padding: .75rem .9rem;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.12);
+  }
+  .gantt-table thead th:first-child { text-align: left; min-width: 200px; border-right: 2px solid rgba(255,255,255,.2); }
+  .gantt-table tbody tr { border-bottom: 1px solid var(--grey-100); }
+  .gantt-table tbody tr:last-child { border-bottom: none; }
+  .gantt-table tbody tr:nth-child(even) { background: var(--grey-50); }
+  .gantt-table td {
+    padding: .65rem .9rem;
+    vertical-align: middle;
+    font-size: .83rem;
+  }
+  .gantt-table td:first-child {
+    font-weight: 500;
+    color: var(--grey-700);
+    border-right: 2px solid var(--grey-100);
+    line-height: 1.4;
+  }
+  .gantt-table td:first-child span {
+    display: block;
+    font-size: .73rem;
+    color: var(--grey-500);
+    font-weight: 400;
+    margin-top: .1rem;
+  }
+  .gantt-cell { text-align: center; border-right: 1px solid var(--grey-100); position: relative; }
+  .gantt-bar {
+    display: inline-block;
+    height: 22px;
+    border-radius: 4px;
+    width: 90%;
+    position: relative;
+  }
+  .g-purple { background: linear-gradient(90deg, var(--purple-deep), var(--purple-mid)); }
+  .g-mid    { background: linear-gradient(90deg, var(--purple-mid), var(--purple-soft)); }
+  .g-soft   { background: linear-gradient(90deg, var(--purple-soft), var(--purple-pale)); }
+  .g-pale   { background: linear-gradient(90deg, var(--purple-pale), #d9cdf0); }
+  .gantt-legend {
+    display: flex;
+    gap: 1.5rem;
+    padding: .9rem 1.2rem;
+    border-top: 1px solid var(--grey-100);
+    flex-wrap: wrap;
+  }
+  .legend-item { display: flex; align-items: center; gap: .5rem; font-size: .78rem; color: var(--grey-500); }
+  .legend-dot { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+
+  /* ───────────── MODEL OVERVIEW ───────────── */
+  .model-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin: 1.4rem 0; }
+  .model-card {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-card);
+  }
+  .model-card .badge {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: .2rem .7rem;
+    border-radius: 20px;
+    margin-bottom: .8rem;
+  }
+  .badge-macro { background: var(--purple-deep); color: #fff; }
+  .badge-micro { background: var(--purple-mist); color: var(--purple-deep); border: 1px solid var(--purple-pale); }
+  .model-card h3 { margin-top: 0; font-size: 1.05rem; }
+  .step-flow {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    flex-wrap: wrap;
+    margin-top: .7rem;
+  }
+  .step-flow .step {
+    background: var(--purple-mist);
+    color: var(--purple-deep);
+    font-size: .73rem;
+    font-weight: 600;
+    padding: .25rem .65rem;
+    border-radius: 20px;
+    border: 1px solid var(--purple-pale);
+    white-space: nowrap;
+  }
+  .step-flow .arrow { color: var(--purple-soft); font-size: .9rem; }
+
+  /* ───────────── ADDIE SECTIONS ───────────── */
+  .addie-stage {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+  }
+  .addie-header {
+    background: linear-gradient(90deg, var(--purple-deep), var(--purple-mid));
+    padding: 1rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .addie-num {
+    background: rgba(255,255,255,.2);
+    border: 1px solid rgba(255,255,255,.3);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: .04em;
+  }
+  .addie-header h3 { color: #fff; margin: 0; font-size: 1.05rem; }
+  .addie-body { padding: 1.6rem 1.8rem; }
+
+  /* ───────────── SESSION CARDS ───────────── */
+  .session-card {
+    background: var(--purple-ultra);
+    border: 1px solid var(--purple-pale);
+    border-radius: var(--radius);
+    margin-bottom: 1.6rem;
+    overflow: hidden;
+  }
+  .session-header {
+    background: var(--purple-mist);
+    border-bottom: 1px solid var(--purple-pale);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .session-header h4 { margin: 0; text-transform: none; letter-spacing: 0; font-size: .98rem; color: var(--purple-deep); font-family: 'Playfair Display', serif; font-weight: 600; }
+  .session-tag {
+    font-size: .72rem;
+    font-weight: 600;
+    background: var(--purple-deep);
+    color: #fff;
+    padding: .2rem .7rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .session-body { padding: 1.3rem 1.5rem; }
+  .session-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: .8rem;
+    margin-bottom: 1.2rem;
+  }
+  .pillar {
+    background: var(--white);
+    border: 1px solid var(--purple-pale);
+    border-radius: var(--radius-sm);
+    padding: .8rem 1rem;
+  }
+  .pillar .pillar-icon { font-size: 1.1rem; margin-bottom: .3rem; }
+  .pillar .pillar-title { font-size: .78rem; font-weight: 600; color: var(--purple-deep); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .3rem; }
+  .pillar p { font-size: .82rem; color: var(--grey-700); margin: 0; line-height: 1.5; }
+
+  /* ───────────── OBSERVATION TABLE ───────────── */
+  .obs-table thead tr { background: var(--purple-mid); }
+
+  /* ───────────── STAKEHOLDER CARDS ───────────── */
+  .stakeholder-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+  .stakeholder-card {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    box-shadow: var(--shadow-card);
+  }
+  .stakeholder-card .s-name { font-weight: 700; color: var(--purple-deep); font-size: .93rem; margin-bottom: .3rem; }
+  .stakeholder-card .s-role { font-size: .78rem; color: var(--grey-500); margin-bottom: .7rem; font-style: italic; }
+  .s-badge { display: inline-block; font-size: .7rem; font-weight: 600; padding: .15rem .55rem; border-radius: 12px; margin-right: .3rem; margin-bottom: .3rem; }
+  .s-high { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+  .s-med  { background: #fff8e1; color: #f57f17; border: 1px solid #ffe082; }
+  .s-low  { background: var(--grey-100); color: var(--grey-500); border: 1px solid var(--grey-300); }
+
+  /* ───────────── CLUSTER CARDS ───────────── */
+  .cluster-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+  .cluster-card {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.4rem;
+    box-shadow: var(--shadow-card);
+    border-top: 4px solid var(--purple-mid);
+  }
+  .cluster-card h4 { margin-top: 0; font-size: .83rem; color: var(--purple-deep); }
+  .cluster-card p { font-size: .83rem; margin-bottom: .6rem; }
+  .cluster-card .focus { font-size: .78rem; color: var(--grey-500); font-style: italic; }
+
+  /* ───────────── PERSONA ───────────── */
+  .persona-wrap {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    margin: 1.4rem 0;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+  }
+  .persona-image { background: var(--purple-mist); display: flex; align-items: center; justify-content: center; flex-direction: column; padding: 2rem; gap: .8rem; }
+  .persona-image img { max-width: 100%; border-radius: var(--radius-sm); }
+  .persona-info { padding: 1.8rem; }
+  .persona-info h3 { margin-top: 0; }
+  .persona-traits { list-style: none; margin-top: .8rem; }
+  .persona-traits li { padding: .5rem 0; border-bottom: 1px solid var(--grey-100); font-size: .88rem; color: var(--grey-700); display: flex; gap: .6rem; align-items: flex-start; }
+  .persona-traits li::before { content: '—'; color: var(--purple-soft); flex-shrink: 0; font-weight: 700; }
+  .persona-traits li:last-child { border-bottom: none; }
+
+  /* ───────────── INSIGHT QUOTE ───────────── */
+  .insight-quote {
+    background: var(--purple-mist);
+    border-left: 4px solid var(--purple-mid);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: .9rem 1.3rem;
+    margin: .8rem 0;
+    font-size: .88rem;
+    color: var(--purple-deep);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ───────────── SURVEY TABLE ───────────── */
+  .survey-num { font-family: 'DM Mono', monospace; color: var(--purple-mid); font-size: .78rem; font-weight: 500; }
+  .likert-row { display: flex; gap: .3rem; }
+  .likert-dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid var(--purple-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .65rem; color: var(--grey-500); font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* ───────────── KIRKPATRICK ───────────── */
+  .kp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.2rem 0; }
+  .kp-card {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  .kp-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .kp-1::before { background: var(--purple-deep); }
+  .kp-2::before { background: var(--purple-mid); }
+  .kp-3::before { background: var(--purple-soft); }
+  .kp-4::before { background: var(--purple-pale); }
+  .kp-num { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--purple-pale); font-weight: 700; line-height: 1; margin-bottom: .4rem; }
+  .kp-label { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--purple-deep); margin-bottom: .5rem; }
+  .kp-card p { font-size: .83rem; color: var(--grey-700); margin: 0; }
+
+  /* ───────────── TENSION / REFLECTION BOXES ───────────── */
+  .tension-box {
+    background: var(--white);
+    border: 1px solid var(--grey-100);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .tension-num {
+    background: var(--purple-deep);
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+  .tension-box p { margin: 0; font-size: .88rem; }
+  .tension-box strong { color: var(--purple-deep); }
+
+  /* ───────────── REFERENCES ───────────── */
+  .ref-list { list-style: none; }
+  .ref-list li {
+    font-size: .82rem;
+    color: var(--grey-500);
+    line-height: 1.65;
+    padding: .55rem 0;
+    border-bottom: 1px solid var(--grey-100);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .ref-list li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--purple-soft);
+    font-weight: 700;
+  }
+  .ref-list li:last-child { border-bottom: none; }
+  .ref-list a { color: var(--purple-mid); text-decoration: none; }
+  .ref-list a:hover { text-decoration: underline; }
+
+  /* ───────────── AI DECLARATION ───────────── */
+  .ai-declaration {
+    background: var(--purple-ultra);
+    border: 1px solid var(--purple-pale);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.6rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+  }
+  .ai-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: .1rem; }
+  .ai-declaration p { font-size: .87rem; color: var(--purple-deep); margin: 0; }
+
+  /* ───────────── FOOTER ───────────── */
+  footer {
+    background: var(--purple-deep);
+    color: rgba(255,255,255,.6);
+    text-align: center;
+    padding: 2rem;
+    font-size: .8rem;
+    margin-top: 3rem;
+  }
+  footer strong { color: rgba(255,255,255,.9); }
+
+  /* ───────────── UTILITIES ───────────── */
+  ul.styled { padding-left: 1.3rem; }
+  ul.styled li { margin-bottom: .4rem; font-size: .9rem; }
+  ul.styled li::marker { color: var(--purple-soft); }
+
+  .design-aim {
+    background: linear-gradient(135deg, var(--purple-deep) 0%, var(--purple-mid) 100%);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 2rem 2.4rem;
+    margin: 1.4rem 0;
+  }
+  .design-aim h3 { color: var(--purple-pale); margin-top: 0; font-style: italic; }
+  .design-aim p { color: rgba(255,255,255,.88); margin: 0; font-size: .96rem; line-height: 1.75; }
+  .design-aim p + p { margin-top: .8rem; }
+
+  /* ───────────── RESPONSIVE ───────────── */
+  @media (max-width: 768px) {
+    nav.desktop-nav { display: none; }
+    nav.mobile-nav { display: flex; }
+    .hero { padding: 3.5rem 1.4rem 3rem; }
+    .container { padding: 0 1.2rem; }
+    section { padding: 2.5rem 0; }
+    .model-grid { grid-template-columns: 1fr; }
+    .persona-wrap { grid-template-columns: 1fr; }
+    .persona-image { padding: 1.5rem; }
+    .kp-grid { grid-template-columns: 1fr 1fr; }
+    .session-pillars { grid-template-columns: 1fr 1fr; }
+    .stakeholder-grid { grid-template-columns: 1fr; }
+    h2 { font-size: 1.45rem; }
+    .addie-body { padding: 1.2rem; }
+    table { font-size: .78rem; }
+    td, th { padding: .55rem .7rem; }
+    .gantt-table td:first-child { min-width: 150px; }
+  }
+  @media (max-width: 480px) {
+    .session-pillars { grid-template-columns: 1fr; }
+    .kp-grid { grid-template-columns: 1fr; }
+    .cluster-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- DESKTOP NAV -->
+<nav class="desktop-nav">
+  <span class="nav-brand">Gamal Adam Alharir · AT2</span>
+  <a href="#context">Context</a>
+  <a href="#stakeholders">Stakeholders</a>
+  <a href="#model">Model</a>
+  <a href="#prototype">Prototype</a>
+  <a href="#evaluation">Evaluation</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#reflection">Reflection</a>
+  <a href="#references">References</a>
+</nav>
+
+<!-- MOBILE FLOATING NAV -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#context">Context</a>
+  <a href="#stakeholders">Stakeholders</a>
+  <a href="#model">Model</a>
+  <a href="#prototype">Prototype</a>
+  <a href="#evaluation">Evaluation</a>
+  <a href="#timeline">Timeline</a>
+  <a href="#reflection">Reflection</a>
+  <a href="#references">References</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Design Solution</span>
+    <h1>Shaping <em>Digital Futures</em></h1>
+    <div class="hero-meta">
+      <span><strong>Gamal Adam Alharir</strong></span>
+      <div class="hero-dot"></div>
+      <span>Student ID: <strong>33507767</strong></span>
+      <div class="hero-dot"></div>
+      <span>AT2 · ICT in Indonesian Rural Education</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTEXT & WICKED PROBLEM
+═══════════════════════════════════════ -->
+<div class="container">
+  <section id="context">
+    <div class="section-label"><span class="pill">Section 1</span><div class="line"></div></div>
+    <h2>Context and Wicked Problem</h2>
+
+    <p>The use of ICT in Indonesian education system is not implemented equally. Specifically in rural areas, where the education and bureaucratic stakeholders are often situated in a inharmonious situation. The resistance of ICT, inadequate training added with the lack of internet and facilities from the government are all the factors that worsen the situation. This is supported by findings from Hermawan et al. (2018), which state that the use of ICT in education and management in Indonesia is still low. Although many schools in Indonesia already use ICT, especially for teaching and learning, its use is still limited.</p>
+
+    <p>One major reason is Indonesia's geographical diversity, as the country has many regions with different levels of ICT literacy. To overcome these challenges, the Indonesian government has introduced several policies to improve the use of ICT in education. According to the Ministry of Education and Culture's Strategic Plan (2010–2014), ICT integration became a priority through several important programs. These programs included improving ICT infrastructure and developing digital learning materials to support e-learning at all levels of education.</p>
+
+    <p>However, despite these efforts, the wicked cycle exists. Firstly, in reality, the government policy in ICT does not cover all ranges of rural schools, neglecting some infrastructure condition in rural areas which causes the lack of teachers capability in integrating learning in ICT. This is proven by UNICEF (2021) stating Indonesian teachers still have limited familiarity with technology. Secondly, even if some schools who have been accommodated by the proper facility, not all teachers were fully technology literate. This has a connection with teachers resistance in adopting technology integration due to their unfamiliarity and lack of training (UNICEF, 2021), which eventually caused low ICT literacy (Mirfani, 2019).</p>
+
+    <p>The unequal infrastructure investment clearly caused the human capacity gap which eventually led to the students. It restricts the students to use digital tools and online learning resources. By all the cause of these factors, the students remain disengaged and the outcomes stay low. The low outcomes trigger more policy pressure from government and eventually the cycle repeats.</p>
+
+    <h3>Wicked Problem Map</h3>
+    <div class="img-figure">
+      <img src="image1.webp" alt="Wicked Problem Map"/>
+      <p class="img-caption">The visualization of wicked problems tensions and gaps across stakeholders</p>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     STAKEHOLDER OVERVIEW
+═══════════════════════════════════════ -->
+  <section id="stakeholders">
+    <div class="section-label"><span class="pill">Section 2</span><div class="line"></div></div>
+    <h2>Stakeholder Overview</h2>
+
+    <p>The stakeholder overview identifies the main groups affected by unequal ICT integration in rural education and examines their influence, challenges, and roles in the co-design process. Understanding these relationships helps to understand the solution that potentially addresses the actual needs and capacities of the community.</p>
+
+    <h3>Stakeholder Database</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Stakeholder</th>
+            <th>Core Challenge</th>
+            <th>Influence</th>
+            <th>Interest / Motivation</th>
+            <th>Role in Design Process</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-group"><td colspan="6">Internal Stakeholders</td></tr>
+          <tr>
+            <td></td>
+            <td><strong>Teachers</strong></td>
+            <td>Lack of training to integrate EdTech effectively</td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td>Deliver classroom learning</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><strong>Students</strong></td>
+            <td>Unequal internet and device access limits participation</td>
+            <td><span class="s-badge s-low">Low</span></td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td>Primary learners</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><strong>School Leaders</strong></td>
+            <td>Must balance innovation with limited school resources</td>
+            <td><span class="s-badge s-med">Medium</span></td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td>Support implementation and school culture</td>
+          </tr>
+          <tr class="row-group"><td colspan="6">External Stakeholders</td></tr>
+          <tr>
+            <td></td>
+            <td><strong>Government</strong></td>
+            <td>Policies often do not match rural realities or teacher readiness</td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td>Create reforms and provide infrastructure</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><strong>MGMP / Teacher Communities</strong></td>
+            <td>Some teacher may not be digital literate / EdTech resistance</td>
+            <td><span class="s-badge s-med">Medium</span></td>
+            <td><span class="s-badge s-high">High</span></td>
+            <td>Support professional development / Prototype phase</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     DESIGN THINKING & MODEL
+═══════════════════════════════════════ -->
+  <section id="model">
+    <div class="section-label"><span class="pill">Section 3</span><div class="line"></div></div>
+    <h2>Design Thinking Models &amp; Principles</h2>
+
+    <p>Arriving from the context which requires multifaceted empathy from multiple stakeholders, the Stanford d.school's empathy stage would be valuable to gather understanding from both non-rural and rural perspective. However, Stanford d.school may lack of evaluative treatment in its stages. To address this, the implementation of Analysis, Design, Development, Implementation, and Evaluation (ADDIE) model would be implemented, specifically in Stanford's prototype stage. ADDIE is a system approach to training (SAT) with its history of digital technology in instructional design. This is much heavily related to the prototype stage as a training development syllabus. As Spector et al. (2014) suggests, ADDIE equips evaluation and revision check in every of its stages. This not only helps how the prototype works but also considering how it works according to the stakeholders, a process that Stanford d.school don't apply.</p>
+
+    <div class="design-aim">
+      <h3>Design Aim</h3>
+      <p>To develop a sustainable training development syllabus that focuses on ICT integrated pedagogy to addresses educational inequity in rural Indonesia by supporting low-tech, accessible, and community-driven teaching and learning experiences.</p>
+      <p>This project recognises that technology alone cannot resolve educational inequity in rural Indonesia. Instead, it aims to combine low-tech digital tools with community participation from many stakeholders to create sustainability, peer-to-peer knowledge transfer, and cultural embedding workshop. By embedding empathy, accessibility, and cultural relevance into the design process, the project positions technology as a collaborative learning support rather than a standalone solution.</p>
+    </div>
+
+    <h3>Model Overview</h3>
+    <div class="model-grid">
+      <div class="model-card">
+        <span class="badge badge-macro">MACRO Level</span>
+        <h3>Stanford d.school</h3>
+        <p style="font-size:.87rem; color:var(--grey-700);">The hybrid model is mainly focusing on Stanford d.school which stands on five stages in this project. It guides the overall project starting from its empathy stages which considers wicked problems putting empathy to many stakeholders, and continued with define and ideate which considers and anticipates the cultural resistance and capacity gaps and eventually step into prototype and test which will be operated in ADDIE model for knowing the output of instructional design in this project.</p>
+        <div class="step-flow">
+          <span class="step">Empathise</span><span class="arrow">→</span>
+          <span class="step">Define</span><span class="arrow">→</span>
+          <span class="step">Ideate</span><span class="arrow">→</span>
+          <span class="step">Prototype</span><span class="arrow">→</span>
+          <span class="step">Test</span>
+        </div>
+      </div>
+      <div class="model-card">
+        <span class="badge badge-micro">MICRO Level</span>
+        <h3>ADDIE</h3>
+        <p style="font-size:.87rem; color:var(--grey-700);">The ADDIE model would be specifically operated in prototype and test stage. As the instructional design would appear in a form of training development syllabus, this would takes much work and evaluation from some education stakeholders which would be vital for ensuring the pedagogic side. To address complex bureaucratic and cultural context in Indonesia, Stanford d.school would ensure a comprehensive multi-layer perspective from all stakeholders.</p>
+        <div class="step-flow">
+          <span class="step">Analyse</span><span class="arrow">→</span>
+          <span class="step">Design</span><span class="arrow">→</span>
+          <span class="step">Develop</span><span class="arrow">→</span>
+          <span class="step">Implement</span><span class="arrow">→</span>
+          <span class="step">Evaluate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPATHISE -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">01</div>
+        <h3>Empathise Stage</h3>
+      </div>
+      <div class="addie-body">
+        <p>This first stage aims to identify hypothetical issues by understanding both practical and social problems, including emotional and cultural aspects. To gather this understanding, structured interviews are conducted.</p>
+
+        <h4>Artefact 1 — Stakeholder Interview Protocols (hypothetical)</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Stakeholder</th><th>Purpose of Interview</th><th>Sample Questions</th><th>Expected Insight</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Teachers</strong></td>
+                <td>Understand their resistance and confidence in technology</td>
+                <td>Do you use any technology in your lessons? What makes you feel unsure about using technology? What would a good professional development session look like for you?</td>
+                <td>Technology resistance, confidence gaps, training needs</td>
+              </tr>
+              <tr>
+                <td><strong>Students</strong></td>
+                <td>Explore how internet access affects their learning</td>
+                <td>Have you ever felt left out because of technology in class? What would make learning feel more interesting?</td>
+                <td>Disengagement, technology experience</td>
+              </tr>
+              <tr>
+                <td><strong>School Leaders</strong></td>
+                <td>Identify how they balance school improvement with limited resources and culture</td>
+                <td>How does the school currently support teachers who struggle with technology? What would concern you about introducing a new training program?</td>
+                <td>Resource availability, cultural readiness</td>
+              </tr>
+              <tr>
+                <td><strong>Government</strong></td>
+                <td>Understand how national ICT policies succeed or fail in rural school areas</td>
+                <td>How is ICT policy monitored in remote areas? Who is responsible when ICT integration fails in rural schools?</td>
+                <td>Policy-reality gap, accountability structures, systemic barriers</td>
+              </tr>
+              <tr>
+                <td><strong>MGMP / Teacher Communities</strong></td>
+                <td>Explore how teachers share knowledge and handle EdTech resistance</td>
+                <td>How do teachers currently share practices within your communities? What causes resistance? What role could MGMP play in sustaining a training program long-term?</td>
+                <td>Peer-to-peer knowledge transfer, sustainability, digital literacy gaps</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Key Insights and Activities</h4>
+        <p>Based on the stakeholders reflection, the use of ICT/EdTech in teachers teaching and learning is rarely about willingness, rather, the lack of confidence and minimum training. The fact that teachers are lack of confidence rather than motivation, has direct implications for how training sessions should be sequenced and framed.</p>
+        <p>Students, particularly in areas with limited device and internet access, revealed a pattern of disengagement. Many had never used a digital learning tool in class and had been too familiar with teacher centred teaching, rather than student-centred teaching.</p>
+        <p>School leaders experienced a structural dilemma. they are expected to drive innovation but operate within limited resource (fixed budgets, infrastructure) and complex bureaucracy that rarely benefit rural conditions.</p>
+        <p>Government stakeholders, meanwhile, acknowledged oversight limitations in remote areas, suggesting accountability gaps between national ICT policy and actual implementation on the ground.</p>
+        <p>MGMP/teacher communities potentially holds the biggest chance to pivot this situation: peer-to-peer knowledge transfer already exists informally, but lacks teachers literacy and sustainability. These insights collectively confirmed the design aim: the syllabus project must be low-tech, community-driven, and capable of sustaining itself.</p>
+
+        <h4>Artefact 1.1 — Empathy Map (hypothetical)</h4>
+        <p><em>MGMP/teacher association/trainer — teacher</em></p>
+        <div class="img-figure">
+          <img src="image2.webp" alt="Empathy Map"/>
+        </div>
+
+        <div class="callout">
+          <p><strong>Insights:</strong> This phase reframed the wicked problem by showing that the issue was not only the lack of infrastructure or technological tools, but also the psychosocial and institutional barriers that limit meaningful ICT integration. Teachers' resistance reflected students' disengagement, creating a cycle of avoidance and poor learning outcomes that was further reinforced by policy gaps and unequal distribution of resources (UNICEF, 2021).</p>
+          <p style="margin-top:.7rem;">Empathy played an important role in understanding not only teachers' lack of confidence and limited training, but also the structural pressures experienced by school leaders, students' passive learning experiences, and the need for contextual and sustainable training for MGMP facilitators. These perspectives highlighted that technology alone cannot solve educational inequality in rural Indonesia (Mirfani, 2019).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEFINE -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">02</div>
+        <h3>Define Stage</h3>
+      </div>
+      <div class="addie-body">
+        <h4>Stakeholder Insight Synthesis</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Stakeholder</th><th>Core Need</th><th>Challenge</th><th>Implication for Design</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Teachers</strong></td><td>Build confidence and practical skills to integrate ICT into teaching</td><td>Lack of confidence and training</td><td>Training syllabus must be grounded, peer-supported, and sequenced</td></tr>
+              <tr><td><strong>Students</strong></td><td>Access digital learning experiences that are engaging and relevant to their context</td><td>Unequal device and internet access</td><td>Design must account for offline-first and low-tech delivery</td></tr>
+              <tr><td><strong>School Leaders</strong></td><td>Drive school improvement without neglecting culture or limited resources</td><td>Limited infrastructure, fundings and complex bureaucracy</td><td>Solution must be low-cost, institutionally flexible, and easy to adopt</td></tr>
+              <tr><td><strong>Government</strong></td><td>Monitor and demonstrate ICT policy outcomes across all school levels including rural areas</td><td>Unequal national ICT policies</td><td>Design must offer a community-driven model that can fill the policy gap</td></tr>
+              <tr><td><strong>MGMP / Teacher Communities</strong></td><td>Facilitate peer-to-peer professional development in a sustainable and culturally embedded way</td><td>Informal knowledge-sharing exists but lacks structure</td><td>Training syllabus must be structured for peer-led delivery with sustainability</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Artefact 2.1 — Problem Cluster Diagram (hypothetical)</h4>
+        <div class="cluster-grid">
+          <div class="cluster-card">
+            <h4>Digital Confidence Gap</h4>
+            <p>Teachers avoid ICT not because of unwillingness but from lack of confidence and training</p>
+            <p class="focus"><strong>Design focus:</strong> Design training must be grounded and familiar at first, building confidence before introducing progressive method</p>
+          </div>
+          <div class="cluster-card">
+            <h4>Access Gap</h4>
+            <p>Unequal device and internet access excludes students from digital learning</p>
+            <p class="focus"><strong>Design focus:</strong> Prioritise offline-first and low-tech tools so the learning process is not depending on connectivity</p>
+          </div>
+          <div class="cluster-card">
+            <h4>Sustainable Gap</h4>
+            <p>Peer-to-peer knowledge transfer exists informally within MGMP but lacks structure, making programs hard to be sustainable</p>
+            <p class="focus"><strong>Design focus:</strong> Embed sustainability mechanisms into the training syllabus so it can outlast any individual facilitator or project cycle</p>
+          </div>
+        </div>
+
+        <h4>Artefact 2.2 — Persona: Budi (hypothetical)</h4>
+        <div class="persona-wrap">
+          <div class="persona-image">
+            <img src="image3.webp" alt="Persona – Budi"/>
+          </div>
+          <div class="persona-info">
+            <h3>Budi</h3>
+            <p style="font-size:.86rem; color:var(--grey-500); margin-bottom:.5rem;">Rural Teacher · South Sumatra</p>
+            <p style="font-size:.88rem;">Key traits:</p>
+            <ul class="persona-traits">
+              <li>Relies on familiar conventional methods to maintain confidence and avoid embarrassment in class.</li>
+              <li>Learns best through hands-on practice and grounded method rather than highly formal instruction.</li>
+              <li>Becomes irrelevant from training when tools feel too advance for his low-connectivity classroom.</li>
+            </ul>
+            <div class="callout" style="margin-top:1rem;">
+              <p><strong>Design implication:</strong> The training syllabus must start with grounded, peer-led activities that build confidence gradually, and using offline-first tools that adapt the realities and cultural aspect of rural South Sumatra classrooms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDEATE -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">03</div>
+        <h3>Ideate Stage</h3>
+      </div>
+      <div class="addie-body">
+        <h4>Co-Design Ideation Process</h4>
+        <p>Ideas from all three sessions will eventually be evaluated based on cultural suitability, feasibility, and their alignment with the hybrid Stanford d.school and ADDIE model.</p>
+
+        <h4>Stakeholder Roles in Ideation</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Stakeholder</th><th>Contribution</th><th>Design Tension Addressed</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Teachers</strong></td><td>Proposed short, modular training activities</td><td>Digital confidence gap</td></tr>
+              <tr><td><strong>Students</strong></td><td>Ideal tendency on visual learning activities that do not depend on stable internet</td><td>Access gap</td></tr>
+              <tr><td><strong>School Leaders</strong></td><td>Advocated for solutions that require minimal additional funding and can be integrated into existing school facilities programs</td><td>Sustainable gap</td></tr>
+              <tr><td><strong>Government</strong></td><td>Sought ways to document and track program outcomes through community-level structure</td><td>Sustainable gap</td></tr>
+              <tr><td><strong>MGMP / Teacher Communities</strong></td><td>Proposed formalising existing peer-sharing practices into structured, repeatable training modules, emphasising that facilitators need clear session guides and role for the program</td><td>Sustainable gap</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Artefact 3.1 — Generated Concept Clusters / Ideation Sketch Board (Crazy 8s) (hypothetical)</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Concept</th><th>Description</th><th>Design Potential</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Peer-led syllabus</strong></td><td>A structured training syllabus delivered by MGMP facilitators to fellow teachers, using session guides that require no external trainer or internet dependency</td><td>The most essential substance for prototype, anticipating and covering the digital confidence and sustainable gap</td></tr>
+              <tr><td><strong>Offline-first tools</strong></td><td>Printable worksheets, activity cards, and low-tech classroom exercises that is culturally embedded without requiring stable internet or devices</td><td>Addresses the access gap, ensuring the teachers can slowly shift from conventional to progressive teaching one step at a time</td></tr>
+              <tr><td><strong>Kahoot! as a play-first entry point</strong></td><td>Using Kahoot! in early training sessions as a fun, grounded way to introduce teachers to digital tools</td><td>Addresses the digital confidence gap, reduces fear of failure by letting teachers experience technology as a learner first</td></tr>
+              <tr><td><strong>Modular session guide</strong></td><td>A set of short, self-contained training modules that MGMP facilitators can run independently. Each module focuses on one practical skill</td><td>Strengthens sustainability and ensures the syllabus can be picked up by any facilitator at any time without losing continuity</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Artefact 3.2 — Ideation Sketch Board (Crazy 8s) (hypothetical)</h4>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin:1rem 0;">
+          <div class="img-figure" style="margin:0;"><img src="image4.webp" alt="Ideation Sketch 1"/></div>
+          <div class="img-figure" style="margin:0;"><img src="image5.webp" alt="Ideation Sketch 2"/></div>
+          <div class="img-figure" style="margin:0;"><img src="image6.webp" alt="Ideation Sketch 3"/></div>
+          <div class="img-figure" style="margin:0;"><img src="image7.webp" alt="Ideation Sketch 4"/></div>
+        </div>
+
+        <h4>Selection and Refinement</h4>
+        <p>The group selected the peer-led syllabus as the most practical concept because it:</p>
+        <ul class="styled">
+          <li>Directly addresses all three design tensions: the digital confidence gap, the access gap, and the sustainable gap within a single integrated syllabus</li>
+          <li>Can be delivered entirely by MGMP facilitators without dependency on external trainers and stable internet.</li>
+          <li>Embeds offline-first tools and Kahoot! as a starter within its modular structure, meaning the other concepts are not neglected but absorbed into the syllabus itself.</li>
+        </ul>
+        <p>Auernhammer and Roth (2021) argue that what makes a great essential innovation management is when teachers is supported by safe environment to try, fail, and grow first rather than relying on tools the most. and that this kind of psychological freedom is what actually unlocks learning. This is exactly what the peer-led syllabus offers: a space where teachers learn alongside people they already trust, without fear of judgment.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     PROTOTYPE
+═══════════════════════════════════════ -->
+  <section id="prototype">
+    <div class="section-label"><span class="pill">Section 4</span><div class="line"></div></div>
+    <h2>Prototype Stage</h2>
+    <p>As Stanford d.school is a design thinking that build something to test with stakeholders, ADDIE is here to enhance the prototype process to be more structured. Founding from Cano-Cruz (2026) proved the integration of ADDIE can enhance project design and execution as it provides a structured framework.</p>
+
+    <!-- ADDIE ANALYSE -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">A</div>
+        <h3>ADDIE — Analyse</h3>
+      </div>
+      <div class="addie-body">
+        <p>The analysis stage translated empathy findings into a clear picture of the learning environment and the gaps the syllabus must address:</p>
+        <p><strong>Teacher readiness:</strong> Many schools in rural areas have limited or no reliable WiFi access which causes low digital confidence and resistance to EdTech (UNICEF, 2021).</p>
+        <p><strong>Infrastructure:</strong> MGMP and teacher training meetings are held every two weeks in a designated cluster school. Internet access is often unstable, making online-dependent tools more of a challenge than a support.</p>
+        <p><strong>Learning context:</strong> Teachers respond more positively to peer modelling than to expert-led instruction, consistent with Indonesia's cultural value of gotong royong as collective effort and mutual support (Demitra &amp; Sarjoko, 2018).</p>
+        <p><strong>Learning gap identified:</strong> Teachers lack both practical tool knowledge and the pedagogical framing to shift from teacher-centred to student-centred learning (Hermawan et al., 2018), meaning the syllabus must address both rather than treating them as separate problems.</p>
+      </div>
+    </div>
+
+    <!-- ADDIE DESIGN -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">D</div>
+        <h3>ADDIE — Design</h3>
+      </div>
+      <div class="addie-body">
+        <p>Three learning objectives were designed for the 3-session workshop:</p>
+        <div class="card card-accent">
+          <p>Teachers experience <strong>student-centred</strong> and ICT-integrated learning (Kahoot!) to understand the learner's (students) perspective. This not only help teachers to understand others point of view, but also expands the idea of learning that is attractive and promising (Karmina et al., 2021). By applying this approach, teachers can slowly learn a progressive method without having too much cognitive load to deepen the pedagogical continuity. Teachers are expected to learn things one step at a time through <strong>low-tech digital tool</strong> with such iteration rather than evaluation. The experience of <strong>designing a lesson with peer feedback</strong> would build teachers confidence gradually. Sarjoko and Demitra (2018) argued by situating this type of approach based on the cultural appropriateness in Indonesian context. Gillies (2007) added that the shared responsibility created within a group can increase students' sense of accountability and motivation to perform well. Individual accountability can also be encouraged through peer, group, and teacher assessments of students' contributions to the group. The findings of the current study showed that peer assessment was used to help students complete tasks, support group understanding, and improve the quality of the work. This scenario uses gamification element such as Kahoot to support the situated teaching and learning context. The limited infrastructure will decide a huge consideration of how it will run, considering challenges that needs to be adapted. Therefore, the framework proposed for this model will include Gamification framework, pedagogical framework, and Low-tech contingency framework. The selection of gamified mobile-based learning is considering on the potential of it as an accessible mobile devices rather than requiring traditional educational infrastructure. This is supported by (Gao et al., 2020) who explains the way students interact with materials can be delivered in a more engaging learning process through combination of game elements such as rewards, challenges, levels and points. The pedagogical syllabus is grounded in collaborative design as a form of professional development (Voogt et al., 2015), where teachers are positioned as co-designers of their own learning rather than passive recipients of training. This collaborative process aims to develop all three areas of TPACK simultaneously: technological, pedagogical, and content knowledge. As Bakri et al. (2021) argues, the training of teachers of professional development that involves technology, strategy and teaching needs is ideally accompanied by collaboration as the essential skill. Some sessions are designed to function without internet access. While Kahoot! is used as an online gamified platform, printed activity cards and peer game boards serve as the main learning materials. This approach is important because, in many Indonesian schools, resources such as braille textbooks, assistive technologies, and even simple audio devices are still limited (Febriana et al., 2018). The culturally relevant pedagogy proposed by Gloria Ladson-Billings (1995) suggests that students are more likely to engage and succeed when their culture is reflected in the curriculum. The program also applies cultural grounding by structuring sessions around musyawarah (collective deliberation), where decisions and designs are developed through group discussion rather than individual instruction. Indonesia's core values of gotong royong (mutual assistance) and musyawarah (collective decision-making) are closely aligned with the principles of cooperative learning (Demitra &amp; Sarjoko, 2018). The concept of gotong royong encourages community members to share responsibilities equally in order to achieve common goals, while musyawarah means working together to reach collective agreement and shared understanding among all members of the community (Karmina et al., 2021).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDIE DEVELOP -->
+    <div class="addie-stage">
+      <div class="addie-header">
+        <div class="addie-num">D</div>
+        <h3>ADDIE — Develop</h3>
+      </div>
+      <div class="addie-body">
+        <p>Three 90-minute sessions were developed, each combining the four design aspects identified in the Design stage: gamification, pedagogical framework, low-tech contingency, and cultural grounding. These were integrated into structured, facilitated activities. Each session focused on one learning objective and one design tension.</p>
+
+        <!-- SESSION 1 -->
+        <div class="session-card">
+          <div class="session-header">
+            <span class="session-tag">Session 1 · 90 mins</span>
+            <h4>Immersion · Digital Confidence Gap</h4>
+          </div>
+          <div class="session-body">
+            <p><em>Objective: Teachers experience student-centred, ICT-integrated learning from the learner's perspective</em></p>
+            <div class="session-pillars">
+              <div class="pillar">
+                <div class="pillar-icon">🎮</div>
+                <div class="pillar-title">Gamification</div>
+                <p>Teachers participate in a Kahoot! quiz as learners, not as instructors. The MGMP facilitator runs the session. This is not about testing knowledge, rather about experiencing how game elements such as points, challenges, and instant feedback can shift the situation of a classroom. Combining game elements with learning creates a more engaging process, and by experiencing this as a learner first, teachers internalise the pedagogy before they are asked to deliver it (Gao et al., 2020; Liu et al., 2020).</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📚</div>
+                <div class="pillar-title">Pedagogical Framework</div>
+                <p>The session is structured around the idea that learning together, teaching, and sharing with one another is attractive and promising (Karmina et al., 2021). Teachers are not positioned as experts receiving instruction rather as co-learners.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📴</div>
+                <div class="pillar-title">Low-Tech Contingency</div>
+                <p>If the internet is unstable, the Kahoot! activity can be replaced with a printed quiz board. It uses the same game mechanics, such as points, rounds, and peer competition, but does not require internet access. This ensures the session can run in all conditions and helps address access gaps in schools where resources like assistive technologies or stable connectivity are limited (Febriana et al., 2018).</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">🤝</div>
+                <div class="pillar-title">Cultural Grounding</div>
+                <p>The debrief at the end of Session 1 considers cultural element which is "Musyawarah" meaning putting conversation together to achieve specific purpose.</p>
+              </div>
+            </div>
+            <h4>Artefact 4.3.1 (hypothetical)</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Time</th><th>Activity</th><th>Participant Insight</th></tr></thead>
+                <tbody>
+                  <tr><td>0–10 mins</td><td><strong>Welcome + framing</strong> Facilitator opens the session by framing it as a play session, not a training. No assessment, no evaluation. Teachers are told: "Today you are the students."</td><td><div class="insight-quote">"Finally a session where I don't have to perform. I can just try."</div></td></tr>
+                  <tr><td>10–35 mins</td><td><strong>Kahoot! quiz — play as learners</strong> Facilitator runs a Kahoot! quiz on a general topic (e.g. Indonesian geography quiz). Teachers join as participants. No one is asked to host or explain anything.</td><td><div class="insight-quote">"I didn't realise how nervous my students feel when the time is running. Now I understand why they freeze."</div></td></tr>
+                  <tr><td>35–55 mins</td><td><strong>Guided reflection — musyawarah circle</strong> Facilitator opens a group debrief: "What did that feel like? What might your students experience?" Teachers share in a circle.</td><td><div class="insight-quote">"When Pak Andi shared his experience, I realised I wasn't alone. We all felt the same pressure."</div></td></tr>
+                  <tr><td>55–75 mins</td><td><strong>Introduction to gamification elements</strong> Facilitator introduces three gamification tools: point systems, challenge cards, and peer quiz formats with cultural elements. Teachers explore printed activity card samples in pairs.</td><td><div class="insight-quote">"The challenge card feels simple enough. I think even I could make one for my Bahasa Indonesia class."</div></td></tr>
+                  <tr><td>75–90 mins</td><td><strong>Closing + preview of Session 2</strong> Facilitator closes: "Next session, you will design your own lesson using one of these tools." Teachers choose a partner for Session 2.</td><td><div class="insight-quote">"I already know which tool I want to try. I just hope I can make it work without the internet."</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SESSION 2 -->
+        <div class="session-card">
+          <div class="session-header">
+            <span class="session-tag">Session 2 · 90 mins</span>
+            <h4>Co-Design · Access Gap</h4>
+          </div>
+          <div class="session-body">
+            <p><em>Objective: Teachers collaboratively design one lesson using a low-tech digital tool, supported by peer facilitation</em></p>
+            <div class="session-pillars">
+              <div class="pillar">
+                <div class="pillar-icon">🎮</div>
+                <div class="pillar-title">Gamification</div>
+                <p>Teachers work in MGMP pairs to design a lesson that includes a gamification element of their choice, such as a point system, challenge cards, or a peer quiz. The gamification element is not fixed; instead, pairs select what best suits their subject and students. This indirectly supports the development of content knowledge alongside technological knowledge, which are two domains of TPACK (Bakri et al., 2021).</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📚</div>
+                <div class="pillar-title">Pedagogical Framework</div>
+                <p>A structured peer feedback form is completed at the end using sentence starters to keep feedback safe and constructive. As Karmina et al. (2021) confirm, peer assessment elevates accountability and motivation, and the evidence shows it helps teachers understand, improve, and take ownership of the task.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📴</div>
+                <div class="pillar-title">Low-Tech Contingency</div>
+                <p>All co-design materials are print-based: lesson plan templates, activity card templates, and peer feedback forms. No internet connection is required at any point in this session. This is a deliberate design decision: the session must be able to function in the most under-resourced MGMP cluster school.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">🤝</div>
+                <div class="pillar-title">Cultural Grounding</div>
+                <p>Pair work in this session mirrors "gotong royong" or in short shared responsibility towards specific purpose. Each teacher carries equal responsibility in the design, and the output belongs to both.</p>
+              </div>
+            </div>
+            <h4>Artefact 4.3.2 (hypothetical)</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Time</th><th>Activity</th><th>Participant Insight</th></tr></thead>
+                <tbody>
+                  <tr><td>0–10 mins</td><td><strong>Warm-up recap</strong> Facilitator briefly revisits Session 1: "What gamification element did you find most interesting?" Pairs confirm their chosen tool for today's design task.</td><td><div class="insight-quote">"I thought about it all week. I want to try the point system, my students love competition."</div></td></tr>
+                  <tr><td>10–50 mins</td><td><strong>Co-design: lesson planning in pairs</strong> Teacher pairs use a printed lesson plan template to design one 30-minute classroom lesson. They choose their own subject, topic, and gamification element. Facilitator circulates to support.</td><td><div class="insight-quote">"Designing with Bu Rini made it easier. When I got stuck she had an idea, and when she got stuck I helped her."</div></td></tr>
+                  <tr><td>50–70 mins</td><td><strong>Peer gallery share</strong> Each pair presents their lesson plan to another pair. Listeners complete a printed peer feedback form using sentence starters.</td><td><div class="insight-quote">"The sentence starters helped. I didn't want to say something wrong so having the template made me feel safer giving feedback."</div></td></tr>
+                  <tr><td>70–85 mins</td><td><strong>Revise and refine</strong> Pairs use the feedback received to revise their lesson plan. Small changes only — the goal is improvement, not a complete redesign.</td><td><div class="insight-quote">"One suggestion from the other pair changed how I sequenced the activity. It actually made more sense."</div></td></tr>
+                  <tr><td>85–90 mins</td><td><strong>Closing + preview of Session 3</strong> Facilitator closes: "Next session, you will trial this lesson with your peers as the students." Teachers keep their lesson plan to review before Session 3.</td><td><div class="insight-quote">"I'm a little nervous but I feel like this lesson is actually mine. I made it. I want to see if it works."</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- SESSION 3 -->
+        <div class="session-card">
+          <div class="session-header">
+            <span class="session-tag">Session 3 · 90 mins</span>
+            <h4>Practice + Reflection · Sustainable Gap</h4>
+          </div>
+          <div class="session-body">
+            <p><em>Objective: Teachers trial their co-designed lesson with peer observers, building confidence through iteration</em></p>
+            <div class="session-pillars">
+              <div class="pillar">
+                <div class="pillar-icon">🎮</div>
+                <div class="pillar-title">Gamification</div>
+                <p>Teachers trial their co-designed gamified lesson with peer observers from within the MGMP group acting as "students." The gamification element developed in Session 2 is tested in a safe, low-stakes environment, while the facilitator can observe without having intervention.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📚</div>
+                <div class="pillar-title">Pedagogical Framework</div>
+                <p>A structured reflection form guides the post-trial discussion, focusing on what worked, what was surprising, and what could be improved. This reflective practice supports the development of all three TPACK domains simultaneously. The session concludes with each teacher leaving with a complete lesson plan.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">📴</div>
+                <div class="pillar-title">Low-Tech Contingency</div>
+                <p>The trial lesson is conducted using only the materials developed in Session 2, all of which are print-based. The modular session guide is also finalised in this session and handed to the MGMP coordinator, ensuring that future rotation can be run by any facilitator within the cluster without external support.</p>
+              </div>
+              <div class="pillar">
+                <div class="pillar-icon">🤝</div>
+                <div class="pillar-title">Cultural Grounding</div>
+                <p>The closing reflection is facilitated as a group. Each pair shares one thing they are proud of and one thing they would improve. This collective acknowledgment of effort mirrors gotong royong: the shared responsibility that a group creates elevates the feeling of accountability and motivation to perform well.</p>
+              </div>
+            </div>
+            <h4>Artefact 4.3.3 (hypothetical)</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Time</th><th>Activity</th><th>Participant Insight</th></tr></thead>
+                <tbody>
+                  <tr><td>0–10 mins</td><td><strong>Warm-up + setup</strong> Pairs review their revised lesson plan. Facilitator sets the scene: "We are a classroom. You are the teacher. We are your students." Observers receive a printed observation form.</td><td><div class="insight-quote">"My hands were shaking a little. But then I remembered, these are just my colleagues. They want me to succeed."</div></td></tr>
+                  <tr><td>10–50 mins</td><td><strong>Lesson trial peer teaching</strong> Each pair delivers a 10-minute excerpt of their co-designed lesson. Peer observers complete the observation form. After each pair, 5 minutes of quiet written reflection before verbal feedback.</td><td><div class="insight-quote">"When they laughed at the quiz question I made, I felt proud. That's the first time I've felt proud in a training."</div></td></tr>
+                  <tr><td>50–70 mins</td><td><strong>Structured group debrief</strong> Whole group shares: "What worked? What surprised you? What would you change?" Facilitator documents key responses on a shared flip chart visible to all.</td><td><div class="insight-quote">"Seeing all our answers on the flip chart made me realise we had all learned something different. That's never happened in a training before."</div></td></tr>
+                  <tr><td>70–82 mins</td><td><strong>Final lesson plan + modular guide handover</strong> Teachers finalise their lesson plan. Facilitator hands the completed modular session guide to the MGMP coordinator for future use.</td><td><div class="insight-quote">"I didn't know we would leave with something finished. I'm going to use this on Monday."</div></td></tr>
+                  <tr><td>82–90 mins</td><td><strong>Closing celebration: gotong royong acknowledgment</strong> Each pair shares one thing they are proud of. Facilitator closes: "You designed this together. You taught this together. This lesson belongs to you."</td><td><div class="insight-quote">"I came in thinking I couldn't do this. I'm leaving thinking maybe I can."</div></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- IMPLEMENT -->
+        <div class="addie-stage">
+          <div class="addie-header">
+            <div class="addie-num">I</div>
+            <h3>ADDIE — Implement</h3>
+          </div>
+          <div class="addie-body">
+            <div class="tension-box">
+              <div class="tension-num">·</div>
+              <p>Sessions run within existing fortnightly MGMP meetings. No new infrastructure needed. Attendance is voluntary but encouraged through peer recognition and practical outcomes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     EVALUATION (TEST)
+═══════════════════════════════════════ -->
+  <section id="evaluation">
+    <div class="section-label"><span class="pill">Section 5</span><div class="line"></div></div>
+    <h2>ADDIE — Test &amp; Evaluation</h2>
+
+    <p>As there is no exact systematic methods of Stanford test stage, the ADDIE evaluation stage would evaluate the project through formative and summative approach. To make it more systematic and comprehensive, the method used in this test phase would be enhanced with Kirkpatrick's 4 level evaluation model, one of the most common and widely used in education sector. The 4 level that consists of: reaction, learning, behaviour and results would precisely measure the digital confidence gap, access gap, and sustainable gap in this project.</p>
+    <p>This is supported by Praslova (2010) that stated this model as a method that can understand rich context of the places and roles from its 4 specific indicators, allowing feedbacks and effectiveness as a needs of organizational change and adjustment.</p>
+
+    <div class="kp-grid">
+      <div class="kp-card kp-1">
+        <div class="kp-num">01</div>
+        <div class="kp-label">Reaction</div>
+        <p>Did teachers find the sessions relevant, engaging, and well-facilitated? Method: post-workshop satisfaction survey (5-minute, Likert scale). Target: willingness to try gamification in class.</p>
+      </div>
+      <div class="kp-card kp-2">
+        <div class="kp-num">02</div>
+        <div class="kp-label">Learning</div>
+        <p>Did teacher knowledge and confidence shift after the 3 sessions? Method: pre/post survey: same 10 questions on confidence and attitude toward EdTech. Target: measurable shift in at least 60% of participants.</p>
+      </div>
+      <div class="kp-card kp-3">
+        <div class="kp-num">03</div>
+        <div class="kp-label">Behaviour</div>
+        <p>Did teachers actually apply gamification in their classrooms after the workshop? Method: classroom observation checklist + brief teacher self-report. Target: at least one gamified activity used in class.</p>
+      </div>
+      <div class="kp-card kp-4">
+        <div class="kp-num">04</div>
+        <div class="kp-label">Results</div>
+        <p>Did the intervention produce meaningful change at the school and student level? Student feedback, school leader interview, and policy officer brief to assess scalability.</p>
+      </div>
+    </div>
+
+    <h3>Level 1 &amp; 2 Artefact — Pre/Post Teacher Survey</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Statement</th>
+            <th>PRE (Before Session 1)</th>
+            <th>POST (After Session 3)</th>
+            <th>Section</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="survey-num">1</td><td>I feel confident using digital tools (e.g. Kahoot!, quiz apps) in my classroom.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Confidence</td></tr>
+          <tr><td class="survey-num">2</td><td>I feel prepared to design a student-centred lesson using technology.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Confidence</td></tr>
+          <tr><td class="survey-num">3</td><td>I am comfortable trying new digital tools even if something goes wrong.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Confidence</td></tr>
+          <tr><td class="survey-num">4</td><td>I believe technology can improve my students' learning experience.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Attitude</td></tr>
+          <tr><td class="survey-num">5</td><td>I am willing to change my teaching approach to include more student participation.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Attitude</td></tr>
+          <tr><td class="survey-num">6</td><td>I find peer-led professional development more useful than expert-led training.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Attitude</td></tr>
+          <tr><td class="survey-num">7</td><td>I am aware of at least one gamification tool I could use in my classroom.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Tool Knowledge</td></tr>
+          <tr><td class="survey-num">8</td><td>I know how to design a lesson that uses game elements (points, challenges, peer quizzes).</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Tool Knowledge</td></tr>
+          <tr><td class="survey-num">9</td><td>I feel supported by my MGMP community to try new teaching approaches.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Support</td></tr>
+          <tr><td class="survey-num">10</td><td>I believe a peer-led training program can help me develop my ICT skills.</td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td><div class="likert-row"><div class="likert-dot">1</div><div class="likert-dot">2</div><div class="likert-dot">3</div><div class="likert-dot">4</div><div class="likert-dot">5</div></div></td><td>Support</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Level 3 Artefact — Classroom Observation Checklist</h3>
+    <div class="table-wrap">
+      <table class="obs-table">
+        <thead>
+          <tr><th>Area</th><th>Observation Item</th><th>Yes / No</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gamification</td><td>Teacher used at least one gamification element (point system, challenge card, peer quiz, or Kahoot!)</td><td></td><td></td></tr>
+          <tr><td>Gamification</td><td>Students were actively participating in the gamified activity</td><td></td><td></td></tr>
+          <tr><td>Student-centred</td><td>Students worked in pairs or groups during the lesson</td><td></td><td></td></tr>
+          <tr><td>Co-designed lesson</td><td>The gamification element in the lesson was selected by the teacher (not prescribed)</td><td></td><td></td></tr>
+          <tr><td>Low-tech</td><td>The lesson ran without needing stable internet (offline or print-based materials used)</td><td></td><td></td></tr>
+          <tr><td>Reflection</td><td>Teacher appeared confident during delivery (observer judgement)</td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.84rem; color:var(--grey-500); margin-top:.5rem;">Facilitator name: ________________________ &nbsp;&nbsp; Teacher observed: ________________________</p>
+    <p style="font-size:.84rem; color:var(--grey-500);">Overall impression: &nbsp; <em>Strong evidence of transfer</em> / <em>Some evidence</em> / <em>Little evidence</em> / <em>No evidence</em></p>
+
+    <h3>Level 4 Artefact — Student Feedback Form</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>No.</th><th>Pertanyaan / Question</th><th>Jawaban / Answer</th></tr></thead>
+        <tbody>
+          <tr><td class="survey-num">1</td><td>Apakah pelajaran hari ini terasa berbeda dari biasanya? (Did today's lesson feel different from usual?)</td><td>Ya / Tidak &nbsp;(Yes / No)</td></tr>
+          <tr><td class="survey-num">2</td><td>Apakah kamu merasa lebih ikut terlibat dalam pelajaran hari ini? (Did you feel more involved in today's lesson?)</td><td>Ya / Tidak &nbsp;(Yes / No)</td></tr>
+          <tr><td class="survey-num">3</td><td>Apakah kamu ingin pelajaran seperti ini lagi? (Would you like more lessons like this?)</td><td>Ya / Tidak &nbsp;(Yes / No)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:.84rem; color:var(--grey-500);">Nama kelas / Class: ________________________ &nbsp;&nbsp; <em>Kamu tidak perlu menulis namamu. / You do not need to write your name.</em></p>
+
+    <h3>Summary — Evaluation Framework Table</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Kirkpatrick Level</th><th>What We Measure</th><th>How</th><th>Success Indicator</th><th>Timing</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Level 1 — Reaction</strong></td><td>Teachers' immediate response to each session: relevance, usefulness of gamification, willingness to try</td><td>Paper-based Likert scale survey (1–5), administered immediately after each session</td><td>At least 70% rate safety and relevance as 4 or above</td><td>After each session</td></tr>
+          <tr><td><strong>Level 2 — Learning</strong></td><td>Shift in teacher confidence, attitude toward EdTech, and ability to design a student-centred lesson</td><td>Pre/post survey — 10 identical questions given before Session 1 and after Session 3</td><td>Measurable positive shift in at least 60% of participants</td><td>Before Session 1 and after Session 3</td></tr>
+          <tr><td><strong>Level 3 — Behaviour</strong></td><td>Whether teachers applied gamification or student-centred methods in their actual classroom after the workshop</td><td>MGMP facilitator classroom observation checklist + teacher self-report form</td><td>At least half of participants used one gamified activity within 2–4 weeks</td><td>2–4 weeks after Session 3</td></tr>
+          <tr><td><strong>Level 4 — Results</strong></td><td>Student experience of gamified lessons; school leader willingness for second cycle; MGMP sustainability; policy alignment</td><td>3-question student feedback form; school leader interview; MGMP coordinator review; policy officer brief</td><td>Positive student feedback; school leader supports second cycle; MGMP guide ready for independent use</td><td>End of Month 3</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     TIMELINE — GANTT CHART
+═══════════════════════════════════════ -->
+  <section id="timeline">
+    <div class="section-label"><span class="pill">Section 6</span><div class="line"></div></div>
+    <h2>Three–Six Month Planner</h2>
+    <p>Artefact A16 · Project Timeline</p>
+
+    <div class="gantt-wrapper">
+      <table class="gantt-table">
+        <thead>
+          <tr>
+            <th>Phase</th>
+            <th>Month 1</th>
+            <th>Month 2</th>
+            <th>Month 3</th>
+            <th>Month 4</th>
+            <th>Month 5</th>
+            <th>Month 6</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Empathise / Discover</strong>
+              <span>Stanford d.school</span>
+            </td>
+            <td class="gantt-cell"><div class="gantt-bar g-purple" title="Stakeholder interviews · empathy map" style="cursor:help;"><span style="color:#fff;font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">Interviews · Empathy Map</span></div></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Define / Synthesis</strong>
+              <span>Stanford d.school</span>
+            </td>
+            <td class="gantt-cell"><div class="gantt-bar g-purple" style="width:45%;"><span style="color:#fff;font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">Problem Clusters · HMW</span></div></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Ideate</strong>
+              <span>Stanford d.school</span>
+            </td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"><div class="gantt-bar g-mid"><span style="color:#fff;font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">Concept Selection</span></div></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Prototype / Develop</strong>
+              <span>Stanford + ADDIE</span>
+            </td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"><div class="gantt-bar g-mid"><span style="color:#fff;font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">Workshop Design · Materials</span></div></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Test / Deliver</strong>
+              <span>Stanford + ADDIE</span>
+            </td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"><div class="gantt-bar g-soft"><span style="color:var(--grey-700);font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">3-Session Workshop + Kirkpatrick</span></div></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+          </tr>
+          <tr>
+            <td>
+              <strong>Peer Dissemination</strong>
+              <span>Extension Phase</span>
+            </td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"></td>
+            <td class="gantt-cell"><div class="gantt-bar g-pale"><span style="color:var(--grey-700);font-size:.7rem;padding:0 .4rem;display:flex;align-items:center;height:100%;">MGMP-led Rollout</span></div></td>
+            <td class="gantt-cell"><div class="gantt-bar g-pale" style="opacity:.75;"></div></td>
+            <td class="gantt-cell"><div class="gantt-bar g-pale" style="opacity:.55;"></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="gantt-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple-deep);"></div>Empathise · Define</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple-mid);"></div>Ideate · Prototype</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple-soft);"></div>Test · Evaluate</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--purple-pale);"></div>Extension (Month 4–6)</div>
+      </div>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     STAKEHOLDER REFLECTION
+═══════════════════════════════════════ -->
+  <section id="reflection">
+    <div class="section-label"><span class="pill">Section 7</span><div class="line"></div></div>
+    <h2>Stakeholder Reflection</h2>
+
+    <p>Every stakeholders in this project have their own meaningful gap, tension and contribution in designing the project which every stakeholders are co-designers rather than passive participants:</p>
+
+    <div class="stakeholder-grid">
+      <div class="stakeholder-card">
+        <div class="s-name">Teachers</div>
+        <div class="s-role">Result of experience in technology failure</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="s-name">Students</div>
+        <div class="s-role">Result of disengagement</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="s-name">School Leaders</div>
+        <div class="s-role">Result of limited resources</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="s-name">MGMP</div>
+        <div class="s-role">Result of unsustainable training</div>
+      </div>
+      <div class="stakeholder-card">
+        <div class="s-name">Government</div>
+        <div class="s-role">Result of unbalanced bureaucracy</div>
+      </div>
+    </div>
+    <p>Each of these uneasiness created a productive decision with no hierarchy, rather, all primary actor of the design.</p>
+
+    <h3>Stakeholder Input → Design Decision Table</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Stakeholder + Input</th><th>Design Decision</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Rural teacher:</strong> lack of confidence and fear of trying</td><td>Removes all performance pressure from first contact with gamification</td></tr>
+          <tr><td><strong>School principal:</strong> concern about limited resources and school facilities</td><td>Embedded syllabus within contextual MGMP trainers and teachers needs</td></tr>
+          <tr><td><strong>MGMP coordinator:</strong> noted that teachers trust peer modelling more than external expert training</td><td>From instructor to guide; Session 2 and 3 are entirely teacher-led</td></tr>
+          <tr><td><strong>Student representative:</strong> reported that current lessons feel repetitive and passive</td><td>Added student engagement feedback form in Test phase, ensuring the student voices are heard</td></tr>
+          <tr><td><strong>District education officer:</strong> wants measurable outcomes for reporting</td><td>Added Kirkpatrick Level 4 evaluation and a one-page summary output for policy reporting</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Managing Stakeholder Tensions</h3>
+    <div class="tension-box">
+      <div class="tension-num">1</div>
+      <p><strong>Accountability vs capacity:</strong> teachers are evaluated on ICT use but not trained for it. <strong>Resolution:</strong> the workshop addresses capability before compliance.</p>
+    </div>
+    <div class="tension-box">
+      <div class="tension-num">2</div>
+      <p><strong>Principal compliance vs teacher agency:</strong> principals want visible results; teachers want safe spaces. <strong>Resolution:</strong> voluntary participation with peer recognition, not top-down mandate.</p>
+    </div>
+
+    <h3>Learning from Engagement</h3>
+    <div class="callout">
+      <p>The most significant learning from stakeholder engagement was not about tools or infrastructure, it was about confidence and cultural safety. The early assumption was that teachers' resistance to EdTech was primarily a skills problem. Engagement revealed it was primarily a psychological one: teachers feared looking incompetent in front of students and colleagues. In this context, tools is a vehicle, not a destination.</p>
+    </div>
+
+    <h2 style="margin-top:2rem;">Section 4 — Critical Review of the Design</h2>
+
+    <h3>Strengths of the Design</h3>
+    <p>First, the most essential element of the design lies in its cultural alignment. The workshop that are lead with peer-led supports taken from MGMP/teacher communities structures resembles Indonesian cultural values; gotong royong &amp; musyawarah, overcoming the digital confidence and sustainable gap in the system. This grounded approach fits perfectly with the low contingency of the design, making it genuinely approachable and accessible for the rural teachers (Maryani et al., 2025). Beyond accessibility, the model is designed for scalability. Trained teachers are encouraged to share their learning with other schools in the range of MGMP cluster, allowing the intervention to continue (Voogt et al., 2015).</p>
+    <p>Although this project operates in a low-tech facilities, the workshop still ensure the TPACK element which includes technological, pedagogical and content knowledge is integrated in the practice without abandoning or eliminating any of the elements. Finally, the Kirkpatrick four-level evaluation framework provides a comprehensive and measurable evaluation stage for assessing the design.</p>
+
+    <h3>Limitations and Challenges</h3>
+    <p>Despite the strengths, the design carries several limitations. The most significant is ineffective student centred approach. There is no guarantee that Kahoot! or game-based activities produce deep pedagogical shift rather than surface-level student-centred teaching. It will all depending on how the teachers internalized the practice from the training syllabus. From the infrastructure aspect, even if it operates in a low-tech contingency, there is no guarantee that the plan would reach its ideal state, considering Kahoot! still only be able to operate with the help of internet connectivity. Most importantly, the sustainability of the program beyond Month 3 can turn uncertain. Without a clear succession plan, the MGMP coordinator's plan to sustain itself can be questionable, knowing that the plan can only reach around expected time.</p>
+
+    <h3>Reflection</h3>
+    <div class="callout">
+      <p>This project's main problem is circulated around the teachers use of digital tools. After engaging with stakeholders, it became clear the real barrier was confidence not skill. That changed everything about how the sessions were designed, and how the rest of the syllabus works. The wicked cycle circulates not because of having problems, rather, the neglection of connectedness of each stakeholders that creates everlasting tension between it.</p>
+    </div>
+
+    <div class="ai-declaration">
+      <span class="ai-icon">🤖</span>
+      <p><strong>Acknowledgment of AI:</strong> I declared the use of Claude (claude.ai) to improve my writings and grammar, illustrate my wicked problems map and time table and identify potential ideas and concepts relevant to some of the stages. The outputs produced by Claude were re-evaluated, ensuring the originality of my ideas.</p>
+    </div>
+  </section>
+
+<!-- ═══════════════════════════════════════
+     REFERENCES
+═══════════════════════════════════════ -->
+  <section id="references">
+    <div class="section-label"><span class="pill">References</span><div class="line"></div></div>
+    <h2>References</h2>
+    <ul class="ref-list">
+      <li>Abdul Hanid, M. F., Mohamad Said, M. N. H., Yahaya, N., &amp; Abdullah, Z. (2022). Effects of augmented reality application integration with computational thinking in geometry topics. <em>Education and information technologies, 27</em>(7), 9485–9521. <a href="https://doi.org/10.1007/s10639-022-10994-w" target="_blank">https://doi.org/10.1007/s10639-022-10994-w</a></li>
+      <li>Auernhammer, J., &amp; Roth, B. (2021). The origin and evolution of Stanford University's design thinking: From product design to design thinking in innovation management. <em>The Journal of product innovation management, 38</em>(6), 623–644. <a href="https://doi.org/10.1111/jpim.12594" target="_blank">https://doi.org/10.1111/jpim.12594</a></li>
+      <li>Bakri, F., Permana, H., Fitriani, W., Ambarwulan, D., Muliyati, D., Bakri, F., Indrasari, W., Muliyati, D., Fahdiran, R., Prayitno, T. B., Budi, E., &amp; Nasbey, H. (2021). The development of 21st century skills and competence in service teacher through TPACK training workshop. Melville.</li>
+      <li>Caws, C. G. (2013). Evaluating a web-based video corpus through an analysis of user interactions. <em>ReCALL (Cambridge, England), 25</em>(1), 85–104. <a href="https://doi.org/10.1017/S0958344012000262" target="_blank">https://doi.org/10.1017/S0958344012000262</a></li>
+      <li>Cano‐Cruz, E. (2026). Development of a Smart Lamp Device Using Project‐Based Learning and the ADDIE Model for Teaching IoT to Software Engineering Students. <em>Computer applications in engineering education, 34</em>(1). <a href="https://doi.org/10.1002/cae.70143" target="_blank">https://doi.org/10.1002/cae.70143</a></li>
+      <li>Colpaert, J. (2006). Toward an ontological approach in goal-oriented language courseware design and its implications for technology-independent content structuring. <em>Computer assisted language learning, 19</em>(2–3), 109–127. <a href="https://doi.org/10.1080/09588220600821461" target="_blank">https://doi.org/10.1080/09588220600821461</a></li>
+      <li>Demitra, D., &amp; Sarjoko, S. (2018). Effects of Handep Cooperative Learning Based on Indigenous Knowledge on Mathematical Problem Solving Skill. <em>International Journal of Instruction, 11</em>(2), 103–114. <a href="https://doi.org/10.12973/iji.2018.1128a" target="_blank">https://doi.org/10.12973/iji.2018.1128a</a></li>
+      <li>Febriana, M., Nurkamto, J., Rochsantiningsih, D., &amp; Muhtia, A. (2018). Teaching in rural Indonesian schools: Teachers challenges. <em>International journal of multicultural and multireligious understanding, 5</em>(5), 11. <a href="https://doi.org/10.18415/ijmmu.v5i5.305" target="_blank">https://doi.org/10.18415/ijmmu.v5i5.305</a></li>
+      <li>Gao, F., Li, L., &amp; Sun, Y. (2020). A systematic review of mobile game-based learning in STEM education. <em>Educational technology research and development, 68</em>(4), 1791–1827. <a href="https://doi.org/10.1007/s11423-020-09787-0" target="_blank">https://doi.org/10.1007/s11423-020-09787-0</a></li>
+      <li>Gillies, R. M. (2007). <em>Cooperative learning: integrating theory and practice</em>. Sage Publications.</li>
+      <li>Hermawan, H. D., Deswila, N., &amp; Yunita, D. N. (2018). Implementation of ICT in Education in Indonesia During 2004–2017.</li>
+      <li>Karakose, T., Kocabas, I., Yirci, R., Papadakis, S., Ozdemir, T. Y., &amp; Demirkol, M. (2022). The Development and Evolution of Digital Leadership: A Bibliometric Mapping Approach-Based Study. <em>Sustainability, 14</em>(23), 16171. <a href="https://doi.org/10.3390/su142316171" target="_blank">https://doi.org/10.3390/su142316171</a></li>
+      <li>Karmina, S., Dyson, B., Watson, P., &amp; Philpot, R. (2021). Teacher Implementation of Cooperative Learning in Indonesia: A Multiple Case Study. <em>Education sciences, 11</em>(5), 218. <a href="https://doi.org/10.3390/educsci11050218" target="_blank">https://doi.org/10.3390/educsci11050218</a></li>
+      <li>Ladson-Billings, G. (1995). Toward a theory of culturally relevant pedagogy. <em>American educational research journal, 32</em>(3), 465–491. <a href="https://doi.org/10.3102/00028312032003465" target="_blank">https://doi.org/10.3102/00028312032003465</a></li>
+      <li>Liu, Z.-Y., Shaikh, Z. A., &amp; Gazizova, F. (2020). Using the Concept of Game-Based Learning in Education. <em>International journal of emerging technologies in learning, 15</em>(14), 53. <a href="https://doi.org/10.3991/ijet.v15i14.14675" target="_blank">https://doi.org/10.3991/ijet.v15i14.14675</a></li>
+      <li>Mirfani, A. M. (2019). The Challenges of Implementing ICT in The Indonesia National Education System of The Industrial Revolution Era 4.0. <em>Journal of physics. Conference series, 1387</em>(1), 12118. <a href="https://doi.org/10.1088/1742-6596/1387/1/012118" target="_blank">https://doi.org/10.1088/1742-6596/1387/1/012118</a></li>
+      <li>Shakeel, S. I., Al Mamun, M. A., &amp; Haolader, M. F. A. (2023). Instructional design with ADDIE and rapid prototyping for blended learning. <em>Education and information technologies, 28</em>(6), 7601–7630. <a href="https://doi.org/10.1007/s10639-022-11471-0" target="_blank">https://doi.org/10.1007/s10639-022-11471-0</a></li>
+      <li>Spector, J. M., Merrill, M. D., Elen, J., Bishop, M. J., &amp; Spector, J. M. (2014). <em>Handbook of Research on Educational Communications and Technology</em> (Fourth edition). Springer Nature. <a href="https://doi.org/10.1007/978-1-4614-3185-5" target="_blank">https://doi.org/10.1007/978-1-4614-3185-5</a></li>
+      <li>Tu, J.-C., Liu, L.-X., &amp; Wu, K.-Y. (2018). Study on the Learning Effectiveness of Stanford Design Thinking in Integrated Design Education. <em>Sustainability, 10</em>(8), 2649. <a href="https://doi.org/10.3390/su10082649" target="_blank">https://doi.org/10.3390/su10082649</a></li>
+      <li>UNICEF. (2021). <em>Situational analysis on digital learning landscape in Indonesia</em>. Retrieved 12 April 2026 from <a href="https://www.unicef.org/indonesia/media/8766/file/Digital" target="_blank">https://www.unicef.org/indonesia/media/8766/file/Digital</a></li>
+      <li>Voogt, J., Laferrière, T., Breuleux, A., Itow, R. C., Hickey, D. T., &amp; McKenney, S. (2015). Collaborative design as a form of professional development. <em>Instructional science, 43</em>(2), 259–282. <a href="https://doi.org/10.1007/s11251-014-9340-7" target="_blank">https://doi.org/10.1007/s11251-014-9340-7</a></li>
+      <li>Praslova, L. (2010). Adaptation of Kirkpatrick's four level model of training criteria to assessment of learning outcomes and program evaluation in Higher Education. <em>Educational assessment, evaluation and accountability, 22</em>(3), 215–225. <a href="https://doi.org/10.1007/s11092-010-9098-7" target="_blank">https://doi.org/10.1007/s11092-010-9098-7</a></li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <strong>Gamal Adam Alharir</strong> · 33507767 · Shaping Digital Futures – AT2 Design Solution
+</footer>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
